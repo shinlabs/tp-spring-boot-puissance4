@@ -6,6 +6,7 @@ import com.igs.ipi.tpspringbootmatatinireia.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,12 +19,13 @@ public class GameController {
     @Autowired
     private PartieEnCours partieEnCours;
 
+    private int[][] tableauDonnes = new int[6][7];
+
     @GetMapping("/new")
     public ModelAndView newGame(){
 
         GameModel gameModel = gameService.newGame();
         partieEnCours.setGameModel(gameModel);
-        int[][] tableauDonnes = new int[6][7];
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("tab", tableauDonnes);
@@ -39,7 +41,6 @@ public class GameController {
     public ModelAndView continueGame(){
 
         GameModel gameModel = partieEnCours.getGameModel();
-        int[][] tableauDonnes = new int[6][7];
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("tab", tableauDonnes);
@@ -49,5 +50,12 @@ public class GameController {
         mav.setViewName("game");
 
         return mav;
+    }
+
+    @GetMapping("/drop/{column}")
+    public void ajouteJeton(@PathVariable int column){
+        /*foreach(int i : tableauDonnes) {
+
+        }*/
     }
 }
