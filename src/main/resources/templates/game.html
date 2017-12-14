@@ -5,10 +5,22 @@
         <title>{{title}}</title>
     </head>
 
-    <body>
+    <body margin="auto">
         <h1>Welcome to the Puissance 4 tournament</h1>
         <p>Today we'll have two opposants!</p>
         <p>{{gameModel.getNom1}} vs {{gameModel.getNom2}}</p>
+
+        <table border="1" cellpadding="7" cellspacing="0">
+            <tbody>
+                {{#tab}}
+                    <tr>
+                        {{#.}}
+                            <td>{{.}}</td>
+                        {{/.}}
+                    </tr>
+                {{/tab}}
+            </tbody>
+        </table>
     </body>
 
 </html>

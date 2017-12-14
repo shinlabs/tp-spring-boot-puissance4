@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/game")
 public class GameController {
@@ -20,7 +24,10 @@ public class GameController {
     public ModelAndView newGame(){
 
         GameModel gameModel = gameService.newGame();
+        int[][] tableauDonnes = new int[6][7];
+
         ModelAndView mav = new ModelAndView();
+        mav.addObject("tab", tableauDonnes);
         mav.addObject("title", "Puissance 4")
                 .addObject("body", "Hello world!");
         mav.addObject("gameModel", gameModel);
